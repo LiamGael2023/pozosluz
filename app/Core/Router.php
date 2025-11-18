@@ -17,7 +17,7 @@ class Router
 
     public function dispatch(): void
     {
-        $method = $_SERVER['REQUEST_METHOD'];
+        $requestMethod = $_SERVER['REQUEST_METHOD'];
         $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
         // Limpiar la URI - remover trailing slashes excepto para root
@@ -28,15 +28,15 @@ class Router
             $uri = '/';
         }
 
-        if (!isset($this->routes[$method][$uri])) {
+        if (!isset($this->routes[$requestMethod][$uri])) {
             http_response_code(404);
-            echo "Página no encontrada";
+            echo "Página no encontrada: {$requestMethod} {$uri}";
             return;
         }
 
-        $handler = $this->routes[$method][$uri];
+        $handler = $this->routes[$requestMethod][$uri];
         $controllerClass = $handler[0];
-        $method = $handler[1];
+        $actionMethod = $handler[1];
 
         if (!class_exists($controllerClass)) {
             die("Controlador no encontrado: {$controllerClass}");
@@ -44,10 +44,10 @@ class Router
 
         $controller = new $controllerClass();
 
-        if (!method_exists($controller, $method)) {
-            die("Método no encontrado: {$method}");
+        if (!method_exists($controller, $actionMethod)) {
+            die("Método no encontrado: {$actionMethod}");
         }
 
-        $controller->$method();
+        $controller->$actionMethod();
     }
 }
