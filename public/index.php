@@ -4,6 +4,16 @@
  * Calculadora de Pozos de Luz - RNE Perú
  */
 
+// DEBUG: Mostrar información de la petición
+if (isset($_GET['debug'])) {
+    header('Content-Type: text/plain');
+    echo "REQUEST_METHOD: " . $_SERVER['REQUEST_METHOD'] . "\n";
+    echo "REQUEST_URI: " . $_SERVER['REQUEST_URI'] . "\n";
+    echo "SCRIPT_NAME: " . $_SERVER['SCRIPT_NAME'] . "\n";
+    echo "PHP_SELF: " . $_SERVER['PHP_SELF'] . "\n";
+    exit;
+}
+
 // Configurar zona horaria
 date_default_timezone_set('America/Lima');
 
