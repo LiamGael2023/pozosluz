@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Pozos de Luz - Normativa Peruana RNE</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Calculadora de Pozos de Luz</h1>
+            <p class="subtitle">Según Normativa Peruana - RNE A.010 y A.020</p>
+        </header>
+
+        <main>
+            <form id="calculatorForm">
+                <div class="form-section">
+                    <h2>Datos de la Edificación</h2>
+
+                    <div class="form-group">
+                        <label for="tipoEdificacion">Tipo de Edificación:</label>
+                        <select id="tipoEdificacion" required>
+                            <option value="">Seleccione...</option>
+                            <option value="unifamiliar">Vivienda Unifamiliar</option>
+                            <option value="bifamiliar">Vivienda Bifamiliar</option>
+                            <option value="multifamiliar">Edificación Multifamiliar</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="alturaEdificacion">Altura de la Edificación (m):</label>
+                        <input type="number" id="alturaEdificacion" min="2.5" max="200" step="0.1" required>
+                        <small>Altura del paramento más bajo del pozo</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="numeroPisos">Número de Pisos:</label>
+                        <input type="number" id="numeroPisos" min="1" max="50" step="1" required>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h2>Tipo de Ambiente</h2>
+
+                    <div class="form-group">
+                        <label for="tipoAmbiente">Ambiente que da al pozo:</label>
+                        <select id="tipoAmbiente" required>
+                            <option value="">Seleccione...</option>
+                            <option value="tipoA">Tipo A - Dormitorios, Sala, Comedor, Estudio</option>
+                            <option value="tipoB">Tipo B - Cocina, Patio de Servicio, Pasajes</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ladosEdificados">Lados con edificaciones propias:</label>
+                        <select id="ladosEdificados" required>
+                            <option value="">Seleccione...</option>
+                            <option value="1">1 lado</option>
+                            <option value="2">2 lados</option>
+                            <option value="3">3 lados</option>
+                            <option value="4">4 lados</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-calcular">Calcular Dimensiones</button>
+            </form>
+
+            <div id="resultados" class="resultados hidden">
+                <h2>Resultados del Cálculo</h2>
+
+                <div class="resultado-card">
+                    <h3>Dimensiones Mínimas del Pozo de Luz</h3>
+                    <div class="dimension-principal">
+                        <span id="dimensionMinima">--</span>
+                        <span class="unidad">metros por lado</span>
+                    </div>
+                </div>
+
+                <div class="resultado-card">
+                    <h3>Distancia Perpendicular Mínima</h3>
+                    <div class="dimension-secundaria">
+                        <span id="distanciaPerpendicular">--</span>
+                        <span class="unidad">metros</span>
+                    </div>
+                    <p class="descripcion" id="descripcionDistancia"></p>
+                </div>
+
+                <div class="resultado-card">
+                    <h3>Área Mínima del Pozo</h3>
+                    <div class="dimension-secundaria">
+                        <span id="areaMinima">--</span>
+                        <span class="unidad">m²</span>
+                    </div>
+                </div>
+
+                <div class="detalles-calculo">
+                    <h3>Detalles del Cálculo</h3>
+                    <ul id="detallesLista"></ul>
+                </div>
+
+                <div class="notas-importantes">
+                    <h3>Notas Importantes</h3>
+                    <ul>
+                        <li>Las dimensiones se miden entre las caras de los paramentos que definen el pozo.</li>
+                        <li>Se considera como paramento más bajo a cualquiera de los dos lados del pozo que hagan perpendicular con la distancia mínima requerida.</li>
+                        <li>Los pozos de luz pueden techarse con cubierta transparente, dejando área abierta para ventilación superior al 50% del área del pozo.</li>
+                        <li>Las dimensiones se calculan por tramos cada 18.00 m de altura.</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <div class="referencias">
+                <h3>Referencias Normativas</h3>
+                <ul>
+                    <li>Norma Técnica A.010 - Condiciones Generales de Diseño</li>
+                    <li>Norma Técnica A.020 - Vivienda</li>
+                    <li>Reglamento Nacional de Edificaciones (RNE)</li>
+                    <li>D.S. Nº 011-2006-VIVIENDA y modificatorias</li>
+                    <li>R.M. Nº 188-2021-VIVIENDA</li>
+                </ul>
+            </div>
+            <p class="disclaimer">
+                Esta calculadora es una herramienta de referencia.
+                Consulte siempre la normativa vigente y a un profesional habilitado para proyectos reales.
+            </p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
