@@ -20,6 +20,12 @@ class Router
         $requestMethod = $_SERVER['REQUEST_METHOD'];
         $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
+        // Remover el subdirectorio base de la URI
+        $baseUrl = defined('BASE_URL') ? BASE_URL : '';
+        if (!empty($baseUrl) && strpos($uri, $baseUrl) === 0) {
+            $uri = substr($uri, strlen($baseUrl));
+        }
+
         // Limpiar la URI - remover trailing slashes excepto para root
         $uri = $uri === '/' ? '/' : rtrim($uri, '/');
 
