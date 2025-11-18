@@ -19,9 +19,10 @@ document.addEventListener('DOMContentLoaded', function() {
 async function calcularPozoLuz() {
     const form = document.getElementById('formCalculadora');
     const formData = new FormData(form);
+    const baseUrl = window.BASE_URL || '';
 
     try {
-        const response = await fetch('/calcular', {
+        const response = await fetch(baseUrl + '/calcular', {
             method: 'POST',
             body: formData
         });
@@ -31,7 +32,7 @@ async function calcularPozoLuz() {
         if (data.success) {
             mostrarResultados(data.resultado);
         } else {
-            mostrarErrores(data.errores);
+            mostrarErrores(data.errores || ['Error desconocido']);
         }
     } catch (error) {
         console.error('Error:', error);

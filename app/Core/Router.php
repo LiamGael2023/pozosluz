@@ -20,10 +20,23 @@ class Router
         $method = $_SERVER['REQUEST_METHOD'];
         $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-        // Remover el path base si existe
-        $basePath = dirname($_SERVER['SCRIPT_NAME']);
-        if ($basePath !== '/' && strpos($uri, $basePath) === 0) {
+        // Remover el path base si existe (para instalaciones en subdirectorios)
+        $scriptName = $_SERVER['SCRIPT_NAME'];
+        $basePath = dirname($scriptName);
+
+        // Normalizar basePath
+        if ($basePath === '\\' || $basePath === '.') {
+            $basePath = '';
+        }
+
+        // Remover basePath de la URI
+        if (!empty($basePath) && strpos($uri, $basePath) === 0) {
             $uri = substr($uri, strlen($basePath));
+        }
+
+        // Asegurar que la URI comience con /
+        if (empty($uri) || $uri[0] !== '/') {
+            $uri = '/' . $uri;
         }
 
         $uri = $uri ?: '/';

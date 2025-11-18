@@ -15,7 +15,7 @@
                     Los cálculos realizados aparecerán aquí una vez que la base de datos esté configurada.
                 </p>
                 <div class="empty-action">
-                    <a href="/" class="btn btn-primary">
+                    <a href="<?= defined('BASE_URL') ? BASE_URL : '' ?>/" class="btn btn-primary">
                         <i class="ti ti-calculator me-2"></i>Ir a la Calculadora
                     </a>
                 </div>

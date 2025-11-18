@@ -1,3 +1,4 @@
+<?php $baseUrl = defined('BASE_URL') ? BASE_URL : ''; ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -44,7 +45,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
-                    <a href="/">
+                    <a href="<?= $baseUrl ?>/">
                         <i class="ti ti-building-arch me-2"></i>
                         Pozos de Luz
                     </a>
@@ -53,7 +54,7 @@
                     <div class="d-flex flex-column flex-md-row flex-fill align-items-stretch align-items-md-center">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="/">
+                                <a class="nav-link" href="<?= $baseUrl ?>/">
                                     <span class="nav-link-icon d-md-none d-lg-inline-block">
                                         <i class="ti ti-calculator"></i>
                                     </span>
@@ -61,7 +62,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/historial">
+                                <a class="nav-link" href="<?= $baseUrl ?>/historial">
                                     <span class="nav-link-icon d-md-none d-lg-inline-block">
                                         <i class="ti ti-history"></i>
                                     </span>
@@ -162,7 +163,12 @@
     <!-- Tabler.io JS -->
     <script src="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta17/dist/js/tabler.min.js"></script>
 
+    <!-- Base URL para JavaScript -->
+    <script>
+        window.BASE_URL = '<?= $baseUrl ?>';
+    </script>
+
     <!-- Custom JS -->
-    <script src="/assets/js/calculadora.js"></script>
+    <script src="<?= $baseUrl ?>/assets/js/calculadora.js"></script>
 </body>
 </html>
