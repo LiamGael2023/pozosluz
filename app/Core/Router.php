@@ -25,7 +25,7 @@ class Router
         $basePath = dirname($scriptName);
 
         // Normalizar basePath
-        if ($basePath === '\\' || $basePath === '.') {
+        if ($basePath === '\\' || $basePath === '.' || $basePath === '/') {
             $basePath = '';
         }
 
