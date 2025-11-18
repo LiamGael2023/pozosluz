@@ -15,10 +15,8 @@ ini_set('display_errors', 1);
 define('BASE_PATH', dirname(__DIR__));
 define('APP_PATH', BASE_PATH . '/app');
 
-// Detectar BASE_URL automáticamente
-$scriptName = $_SERVER['SCRIPT_NAME'];
-$baseUrl = rtrim(dirname($scriptName), '/\\');
-define('BASE_URL', $baseUrl ?: '');
+// BASE_URL vacía para servidor en raíz
+define('BASE_URL', '');
 
 // Autoloader simple
 spl_autoload_register(function ($class) {

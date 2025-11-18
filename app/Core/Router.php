@@ -20,26 +20,13 @@ class Router
         $method = $_SERVER['REQUEST_METHOD'];
         $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-        // Remover el path base si existe (para instalaciones en subdirectorios)
-        $scriptName = $_SERVER['SCRIPT_NAME'];
-        $basePath = dirname($scriptName);
+        // Limpiar la URI - remover trailing slashes excepto para root
+        $uri = $uri === '/' ? '/' : rtrim($uri, '/');
 
-        // Normalizar basePath
-        if ($basePath === '\\' || $basePath === '.' || $basePath === '/') {
-            $basePath = '';
+        // Si la URI está vacía, es root
+        if (empty($uri)) {
+            $uri = '/';
         }
-
-        // Remover basePath de la URI
-        if (!empty($basePath) && strpos($uri, $basePath) === 0) {
-            $uri = substr($uri, strlen($basePath));
-        }
-
-        // Asegurar que la URI comience con /
-        if (empty($uri) || $uri[0] !== '/') {
-            $uri = '/' . $uri;
-        }
-
-        $uri = $uri ?: '/';
 
         if (!isset($this->routes[$method][$uri])) {
             http_response_code(404);
