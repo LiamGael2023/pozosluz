@@ -29,9 +29,36 @@
         .normativa-badge {
             font-size: 0.75rem;
         }
+        #grafico-pozo svg {
+            max-width: 100%;
+            height: auto;
+        }
+        .card-sm .h1 {
+            font-size: 1.75rem;
+        }
+        .datagrid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        .datagrid-item {
+            padding: 0.5rem 0;
+        }
+        .datagrid-title {
+            font-size: 0.75rem;
+            color: var(--tblr-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+        .datagrid-content {
+            font-weight: 600;
+        }
         @media (max-width: 768px) {
             .resultado-valor {
                 font-size: 1.75rem;
+            }
+            .card-sm .h1 {
+                font-size: 1.5rem;
             }
         }
     </style>
