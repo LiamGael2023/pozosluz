@@ -1,6 +1,9 @@
 # Calculadora de Pozos de Luz - Configuración Apache
 # Habilita URLs amigables y redirige todas las peticiones a index.php
 
+# Deshabilitar DirectorySlash para evitar redirects 302
+DirectorySlash Off
+
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
